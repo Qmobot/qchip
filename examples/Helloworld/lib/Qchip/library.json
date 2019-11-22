@@ -4,13 +4,13 @@
   "description": "A library for Qchip based board",
   "repository":{
     "type": "git",
-    "url": "https://github.com/Qmobot/qchip.git"
+    "url": "https://github.com/HelTecAutomation/Heltec_ESP32.git"
   },
   "authors":{
         "name": "Qmobot LLP",
         "email": "info@qmobot.com"
    },
-  "version": "1.1.0",
+  "version": "1.0.9",
   "frameworks": "arduino",
   "platforms": "espressif32"
 }

@@ -1,12 +1,12 @@
 #######################################
-# Syntax Coloring Map For Qchip_ESP32
+# Syntax Coloring Map For Heltec_ESP32
 #######################################
 
 #######################################
 # Library (KEYWORD3)
 #######################################
 
-Qchip	KEYWORD3
+Heltec	KEYWORD3
 
 #######################################
 # Datatypes (KEYWORD1)
