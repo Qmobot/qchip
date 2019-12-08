@@ -32,6 +32,8 @@ class Qchip_chip {
     Qchip_chip();
 
     void begin(bool DisplayEnable=true, bool SerialEnable=true, bool PABOOST=true, long BAND=470E6);
+    void motor(bool motor=1, int dir=0);
+    void stop();
     SSD1306Wire *display;
 
 };
