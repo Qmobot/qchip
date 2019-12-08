@@ -8,6 +8,23 @@
 #include <Wire.h>
 #include "oled/SSD1306Wire.h"
 
+#define RT 22
+#define RE 36
+#define LT 21
+#define LE 34
+
+#define LEFT_SENSORPIN 39
+#define CENTER_SENSORPIN 38
+#define RIGHT_SENSORPIN 37
+
+#define PWMA 26
+#define AIN1 14
+#define AIN2 27
+#define STB 18
+#define PWMB 25
+#define BIN1 19
+#define BIN2 23
+
 
 class Qchip_chip {
 
