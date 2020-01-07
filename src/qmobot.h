@@ -1,5 +1,3 @@
-
-
 #ifndef _QMOBOT_H_
 #define _QMOBOT_H_
 
