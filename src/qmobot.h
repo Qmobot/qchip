@@ -8,21 +8,20 @@
 #include <Wire.h>
 #include "oled/SSD1306Wire.h"
 
-#define RT 22
+#define RT 21
 #define RE 36
-#define LT 21
-#define LE 34
+#define LT 22
+#define LE 37
 
-#define LEFT_SENSORPIN 39
-#define CENTER_SENSORPIN 38
-#define RIGHT_SENSORPIN 37
+#define LEFT_SENSORPIN 38
+#define CENTER_SENSORPIN 39
+#define RIGHT_SENSORPIN 34
 
-#define PWMA 26
-#define AIN1 14
-#define AIN2 27
-#define STB 18
-#define PWMB 25
-#define BIN1 19
+#define PWMA 2
+#define AIN1 5
+#define AIN2 17
+#define PWMB 19
+#define BIN1 18
 #define BIN2 23
 
 
