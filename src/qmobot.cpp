@@ -13,7 +13,6 @@ Qchip_chip::Qchip_chip(){
 	pinMode(LT, OUTPUT);
 	pinMode(LE, INPUT);
 
-	pinMode(STB, OUTPUT);
 	pinMode(AIN1, OUTPUT);
 	pinMode(AIN2, OUTPUT);
 	pinMode(BIN1, OUTPUT);
