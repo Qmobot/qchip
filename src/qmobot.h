@@ -5,6 +5,7 @@
 #include <Arduino.h>
 #include <Wire.h>
 #include "oled/SSD1306Wire.h"
+#include "AnalogWrite/analogWrite.h"
 
 #define RT 21
 #define RE 36
@@ -23,17 +24,13 @@
 #define BIN2 23
 
 
-class Qchip_chip {
-
- public:
-    Qchip_chip();
-
-    void begin(bool DisplayEnable=true, bool SerialEnable=true, bool PABOOST=true, long BAND=470E6);
-    void motor(bool motor=1, int dir=0);
-    void stop();
-    SSD1306Wire *display;
-
-};
-extern Qchip_chip Qchip;
+void begin(bool DisplayEnable=true, bool SerialEnable=true, bool PABOOST=true, long BAND=470E6);
+void print(String phrase);
+void println(String phrase);
+void erase();
+void show(String phrase="Qmobot.com", int x=0, int y=0);
+void stop();
+void run(char Motor='R', int value=0);
+int echo(char way='R');
 
 #endif

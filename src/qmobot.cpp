@@ -1,7 +1,12 @@
 #include "qmobot.h"
 
 
-Qchip_chip::Qchip_chip(){
+SSD1306Wire *display;
+
+void begin(bool DisplayEnable, bool SerialEnable, bool PABOOST, long BAND) {
+
+	// SSD1306Wire *display;
+
 	display = new SSD1306Wire(0x3c, SDA_OLED, SCL_OLED, RST_OLED, GEOMETRY_128_64);
 	
 	pinMode(RIGHT_SENSORPIN,INPUT);
@@ -20,10 +25,7 @@ Qchip_chip::Qchip_chip(){
 
 	pinMode(PWMA, OUTPUT);
 	pinMode(PWMB, OUTPUT);
-}
 
-
-void Qchip_chip::begin(bool DisplayEnable, bool SerialEnable, bool PABOOST, long BAND) {
 
 	// UART
 	if (SerialEnable) {
@@ -48,50 +50,96 @@ void Qchip_chip::begin(bool DisplayEnable, bool SerialEnable, bool PABOOST, long
 	}
 }
 
-void Qchip_chip::motor(bool motors, int dir) {
-	if(motors == 0){
-		if(dir == 1){
-			digitalWrite(AIN2, LOW);
-			digitalWrite(AIN1, HIGH);
-			digitalWrite(PWMA, HIGH);
-		}
-		else if(dir == -1){
-			digitalWrite(AIN1, LOW);
-			digitalWrite(AIN2, HIGH);
-			digitalWrite(PWMA, HIGH);
-		}
-		else{
-			digitalWrite(AIN2, LOW);
-			digitalWrite(AIN1, LOW);
-			digitalWrite(PWMA, LOW);
-		}
-	}
-	else if(motors == 1){
-		if(dir == 1){
-			digitalWrite(BIN2, LOW);
-			digitalWrite(BIN1, HIGH);
-			digitalWrite(PWMB, HIGH);
-		}
-		else if(dir == -1){
-			digitalWrite(BIN1, LOW);
-			digitalWrite(BIN2, HIGH);
-			digitalWrite(PWMB, HIGH);
-		}
-		else{
-			digitalWrite(BIN2, LOW);
-			digitalWrite(BIN1, LOW);
-			digitalWrite(PWMB, LOW);
-		}
-	}
+
+void print(String phrase){
+	Serial.print(phrase);
 }
 
-void Qchip_chip::stop() {
-	digitalWrite(BIN1, LOW);
-	digitalWrite(BIN2, LOW);
-	digitalWrite(PWMB, LOW);
-	digitalWrite(AIN1, LOW);
+void println(String phrase){
+	Serial.println(phrase);
+}
+
+void show(String phrase, int x, int y){
+	display->drawString(x, y, phrase);
+	display->display();
+}
+
+void erase(){
+	display->clear();
+}
+
+void stop(){
+	analogWrite(PWMA, 0);
+	analogWrite(PWMB, 0);
 	digitalWrite(AIN2, LOW);
-	digitalWrite(PWMA, LOW);
+	digitalWrite(AIN1, LOW);
+	digitalWrite(BIN2, LOW);
+	digitalWrite(BIN1, LOW);
 }
 
-Qchip_chip Qchip;
+void run(char Motor, int value){
+	if(value>255 || value<-255){
+		println("ERROR: Value is less than 0 or bigger than 255 for motors");
+	}
+	else if(Motor!='L' && Motor!='R'){
+		println("ERROR: Motor is not R or L");
+	}
+	else{
+		
+		if(Motor == 'L'){
+			if(value > 0){
+				digitalWrite(AIN2, HIGH);
+				digitalWrite(AIN1, LOW);
+				analogWrite(PWMA, value);
+			}
+			else if(value < 0){
+				digitalWrite(AIN2, LOW);
+				digitalWrite(AIN1, HIGH);
+				analogWrite(PWMA, -value);
+			}
+		}
+		else{
+			if(value > 0){
+				digitalWrite(BIN2, HIGH);
+				digitalWrite(BIN1, LOW);
+				analogWrite(PWMB, value);
+			}
+			else if(value < 0){
+				digitalWrite(BIN2, LOW);
+				digitalWrite(BIN1, HIGH);
+				analogWrite(PWMB, -value);
+			}
+		}
+	}
+}
+
+int echo(char way){
+	long duration = 0;
+	int distance = 0;
+
+	if(way!='L' && way!='R'){
+		println("ERROR: Echo is not R or L");
+		return -1;
+	}
+	else if(way=='R'){
+		digitalWrite(RT, LOW);
+		delayMicroseconds(2);
+		digitalWrite(RT, HIGH);
+		delayMicroseconds(10);
+		digitalWrite(RT, LOW);
+		duration = pulseIn(RE, HIGH);
+		distance= duration*0.034/2;
+		return distance;
+	}
+	else if(way=='L'){
+		digitalWrite(LT, LOW);
+		delayMicroseconds(2);
+		digitalWrite(LT, HIGH);
+		delayMicroseconds(10);
+		digitalWrite(LT, LOW);
+		duration = pulseIn(LE, HIGH);
+		distance= duration*0.034/2;
+		return distance;
+	}
+	return -1;
+}
