@@ -7,21 +7,23 @@
 #include "oled/SSD1306Wire.h"
 #include "AnalogWrite/analogWrite.h"
 
-#define RT 21
-#define RE 36
-#define LT 22
-#define LE 37
+#define RT 27
+#define RE 34
+#define LT 26
+#define LE 39
 
-#define LEFT_SENSORPIN 38
-#define CENTER_SENSORPIN 39
-#define RIGHT_SENSORPIN 34
+#define LEFT_SENSORPIN 36
+#define CENTER_SENSORPIN 37
+#define RIGHT_SENSORPIN 38
 
-#define PWMA 2
-#define AIN1 5
-#define AIN2 17
-#define PWMB 19
-#define BIN1 18
-#define BIN2 23
+#define PWMA 17
+#define AIN1 18
+#define AIN2 23
+#define PWMB 5
+#define BIN1 19
+#define BIN2 22
+
+#define BAT 13
 
 
 void begin(bool DisplayEnable=true, bool SerialEnable=true, bool PABOOST=true, long BAND=470E6);
