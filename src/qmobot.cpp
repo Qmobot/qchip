@@ -68,6 +68,12 @@ void erase(){
 	display->clear();
 }
 
+int battery(){
+	int val = 0;
+	val = analogRead(BAT);
+	return val;
+}
+
 void stop(){
 	analogWrite(PWMA, 0);
 	analogWrite(PWMB, 0);

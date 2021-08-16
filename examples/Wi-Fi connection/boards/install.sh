@@ -1,1 +1,0 @@
-cp qchip.json ~/.platformio/platforms/espressif32/boards/qchip.json

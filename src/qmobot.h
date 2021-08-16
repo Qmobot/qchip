@@ -4,6 +4,7 @@
 
 #include <Arduino.h>
 #include <Wire.h>
+#include <Wifi.h>
 #include "oled/SSD1306Wire.h"
 #include "AnalogWrite/analogWrite.h"
 
@@ -23,7 +24,7 @@
 #define BIN1 19
 #define BIN2 22
 
-#define BAT 13
+#define BAT 32
 
 
 void begin(bool DisplayEnable=true, bool SerialEnable=true, bool PABOOST=true, long BAND=470E6);
