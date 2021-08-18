@@ -11,8 +11,9 @@ String MLs = "OFF";
 String MRs = "OFF";
 String LEDs = "OFF";
 
-// 3.8 -> 0.60
-// 4.2 -> ???
+// 3.2 -> 2.06
+// 3.8 -> 2.24
+// 4.2 -> 2.46
 
 void setup() { // This function runs once
 	begin(true, true); // Function to initialize Qmobot
@@ -45,7 +46,7 @@ void CheckVals(){
 	CS = String(C);
 
 	float VBAT2 = (float)(analogRead(37))/1024.0; 
-	VBAT = String(VBAT2);
+	VBAT = String(VBAT2*222-444);
 }
 
 void loop() { // This function runs in loop
@@ -55,7 +56,7 @@ void loop() { // This function runs in loop
 	showAll();
 	run('L', 255);
 
-	delay(2000);
+	delay(500);
 	stop();
 	MLs = "OFF";
 	MRs = "ON";
@@ -63,7 +64,7 @@ void loop() { // This function runs in loop
 	showAll();
 
 	run('R', 255);
-	delay(2000);
+	delay(500);
 	stop();
 
 	MLs = "OFF";
@@ -76,7 +77,7 @@ void loop() { // This function runs in loop
 	showAll();
 
 	analogWrite(LED_BUILTIN /* Pin number */, 255 /* Value from 0 to 255*/);
-	delay(2000);
+	delay(1000);
 	
 	LEDs = "OFF";
 	CheckVals();
@@ -87,7 +88,7 @@ void loop() { // This function runs in loop
 	for(int i = 0; i<10; i++){
 		CheckVals();
 		showAll();
-		delay(1000);
+		delay(500);
 	}
 }
 

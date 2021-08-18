@@ -68,10 +68,10 @@ void erase(){
 	display->clear();
 }
 
-int battery(){
-	int val = 0;
-	val = analogRead(BAT);
-	return val;
+float battery(){
+	float VBAT2 = (float)(analogRead(37))/1024.0; 
+	float VBAT = String(VBAT2*222-444);
+	return VBAT
 }
 
 void stop(){

@@ -8,13 +8,15 @@
 #include "oled/SSD1306Wire.h"
 #include "AnalogWrite/analogWrite.h"
 
+#include "WiFi/src/WiFi.h"
+
 #define RT 27
 #define RE 34
 #define LT 26
 #define LE 39
 
 #define LEFT_SENSORPIN 36
-#define CENTER_SENSORPIN 37
+#define CENTER_SENSORPIN 33
 #define RIGHT_SENSORPIN 38
 
 #define PWMA 17
@@ -24,7 +26,7 @@
 #define BIN1 19
 #define BIN2 22
 
-#define BAT 32
+#define BAT 37
 
 
 void begin(bool DisplayEnable=true, bool SerialEnable=true, bool PABOOST=true, long BAND=470E6);
