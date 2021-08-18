@@ -2,8 +2,9 @@
 
 
 SSD1306Wire *display;
+uint32_t chipId = 0;
 
-void begin(bool DisplayEnable, bool SerialEnable, bool PABOOST, long BAND) {
+void begin(bool DisplayEnable, bool SerialEnable, bool BOOT_CTRL, bool PABOOST, long BAND) {
 
 	// SSD1306Wire *display;
 
@@ -25,6 +26,11 @@ void begin(bool DisplayEnable, bool SerialEnable, bool PABOOST, long BAND) {
 
 	pinMode(PWMA, OUTPUT);
 	pinMode(PWMB, OUTPUT);
+
+	if (BOOT_CTRL){
+		pinMode(0, INPUT_PULLUP);
+		attachInterrupt(0, BOOT_control, RISING);
+	}
 
 
 	// UART
@@ -50,6 +56,10 @@ void begin(bool DisplayEnable, bool SerialEnable, bool PABOOST, long BAND) {
 	}
 }
 
+void IRAM_ATTR BOOT_control() {
+  Serial.println("Qairly tun!");
+  esp_deep_sleep_start();
+}
 
 void print(String phrase){
 	Serial.print(phrase);

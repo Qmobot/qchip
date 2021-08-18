@@ -113,12 +113,14 @@
 #define BAT 37
 
 
-void begin(bool DisplayEnable=true, bool SerialEnable=true, bool PABOOST=true, long BAND=470E6);
+void begin(bool DisplayEnable=true, bool SerialEnable=true, bool BOOT_CTRL=true, bool PABOOST=true, long BAND=470E6);
+void IRAM_ATTR BOOT_control();
 void print(String phrase);
 void println(String phrase);
 void erase();
 void show(String phrase="Qmobot.com", int x=0, int y=0);
 void stop();
+float battery();
 void run(char Motor='R', int value=0);
 int echo(char way='R');
 
