@@ -1,4 +1,4 @@
-#include <qmobot.h>
+#include <Arduino.h>
 
 uint32_t chipId = 0;
 
@@ -9,8 +9,11 @@ void IRAM_ATTR BOOT_control() {
 
 
 void setup() {
-	begin();
+	// begin();
+  Serial.begin(115200);
   pinMode(0, INPUT_PULLUP);
+  pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(25, HIGH);
   attachInterrupt(0, BOOT_control, RISING);
   Serial.println("Finished Setup");
 }
