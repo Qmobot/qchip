@@ -6,8 +6,6 @@ uint32_t chipId = 0;
 
 void begin(bool DisplayEnable, bool SerialEnable, bool BOOT_CTRL, bool PABOOST, long BAND) {
 
-	// SSD1306Wire *display;
-
 	display = new SSD1306Wire(0x3c, SDA_OLED, SCL_OLED, RST_OLED, GEOMETRY_128_64);
 	
 	pinMode(RIGHT_SENSORPIN,INPUT);
@@ -54,6 +52,31 @@ void begin(bool DisplayEnable, bool SerialEnable, bool BOOT_CTRL, bool PABOOST, 
 			Serial.print("you can see OLED printed OLED initial done!\r\n");
 		}
 	}
+}
+
+String wifi_connect(char* ssid, char* password){
+	WiFi.begin(ssid, password); 
+	int i = 0;
+	while (WiFi.status() != WL_CONNECTED) { // Wait for the Wi-Fi to connect
+		delay(500);
+		i += 1;
+		if(i > 20){
+			return "Timeout";
+		}
+	}
+	return String(WiFi.localIP()[0]) + String(".") +
+           String(WiFi.localIP()[1]) + String(".") +
+           String(WiFi.localIP()[2]) + String(".") +
+           String(WiFi.localIP()[3]);
+}
+
+String wifi_create(char* ssid, char* password){
+	WiFi.softAP(ssid, password);
+	IPAddress IP = WiFi.softAPIP();
+	return String(IP()[0]) + String(".") +
+           String(IP[1]) + String(".") +
+           String(IP()[2]) + String(".") +
+           String(IP()[3]);
 }
 
 void IRAM_ATTR BOOT_control() {

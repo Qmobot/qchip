@@ -10,7 +10,7 @@
         "name": "Qmobot LLP",
         "email": "info@qmobot.com"
    },
-  "version": "2.0.3",
+  "version": "2.1.0",
   "frameworks": "arduino",
   "platforms": "espressif32"
 }
