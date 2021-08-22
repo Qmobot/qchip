@@ -49,5 +49,7 @@ void stop();
 float battery();
 void run(char Motor='R', int value=0);
 int echo(char way='R');
+String wifi_connect(char* ssid, char* password);
+String wifi_create(char* ssid, char* password);
 
 #endif
