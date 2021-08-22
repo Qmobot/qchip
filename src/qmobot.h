@@ -3,21 +3,10 @@
 
 
 #include <Arduino.h>
+#include <WiFi.h>
 #include <Wire.h>
-#include <Wifi.h>
 #include "oled/SSD1306Wire.h"
 #include "AnalogWrite/analogWrite.h"
-
-#include "WiFi/src/WiFi.h"
-#include "WiFi/src/WiFiAP.h"
-#include "WiFi/src/WiFiMulti.h"
-#include "WiFi/src/WiFiUdp.h"
-#include "WiFi/src/WiFiScan.h"
-#include "WiFi/src/WiFiClient.h"
-#include "WiFi/src/WiFiSTA.h"
-#include "WiFi/src/WiFiServer.h"
-#include "WiFi/src/WiFiType.h"
-#include "WiFi/src/WiFiGeneric.h"
 
 
 #define RT 27

@@ -72,11 +72,11 @@ String wifi_connect(char* ssid, char* password){
 
 String wifi_create(char* ssid, char* password){
 	WiFi.softAP(ssid, password);
-	IPAddress IP = WiFi.softAPIP();
-	return String(IP()[0]) + String(".") +
-           String(IP[1]) + String(".") +
-           String(IP()[2]) + String(".") +
-           String(IP()[3]);
+	IPAddress localIP = WiFi.softAPIP();
+	return String(localIP[0]) + String(".") +
+           String(localIP[1]) + String(".") +
+           String(localIP[2]) + String(".") +
+           String(localIP[3]);
 }
 
 void IRAM_ATTR BOOT_control() {
@@ -103,8 +103,8 @@ void erase(){
 
 float battery(){
 	float VBAT2 = (float)(analogRead(37))/1024.0; 
-	float VBAT = String(VBAT2*222-444);
-	return VBAT
+	float VBAT = (VBAT2*222)-444;
+	return VBAT;
 }
 
 void stop(){
