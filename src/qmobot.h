@@ -14,9 +14,9 @@
 #define LT 26
 #define LE 39
 
-#define LEFT_SENSORPIN 36
+#define LEFT_SENSORPIN 38
 #define CENTER_SENSORPIN 33
-#define RIGHT_SENSORPIN 38
+#define RIGHT_SENSORPIN 36
 
 #define PWMA 17
 #define AIN1 18

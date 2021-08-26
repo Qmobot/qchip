@@ -10,12 +10,22 @@ String VBAT = "OFF";
 String MLs = "OFF";
 String MRs = "OFF";
 String LEDs = "OFF";
+uint32_t chipId = 0;
+String name2;
+
+void name() {
+	for(int i=0; i<17; i=i+8) {
+	  chipId |= ((ESP.getEfuseMac() >> (40 - i)) & 0xff) << i;
+	}
+	name2 = String(name);
+}
 
 
 void setup() { // This function runs once
 	begin(true, true); // Function to initialize Qmobot
-
+	name();
 }
+
 
 void showAll(){
 	erase();
@@ -27,6 +37,7 @@ void showAll(){
 	show(" | EchoR: " + ER, 60, 30);
 	show("L: "+LS+" | C: "+CS+" | R: "+RS+"", 0, 40);
 	show("Qmobot.com/start");
+	show(name2, 50, 0);
 }
 
 void CheckVals(){
@@ -87,28 +98,4 @@ void loop() { // This function runs in loop
 		showAll();
 		delay(500);
 	}
-}
-
-void AnalogWriteExample(){
-	analogWrite(LED_BUILTIN /* Pin number */, 255 /* Value from 0 to 255*/);
-	analogWrite(LED_BUILTIN, 255, 4095 /* Alternative way to show maximum number, absolute maximum is 4095*/);
-}
-
-void DisplayExample(){
-	erase(); // Erases display
-	show("Your phrase", /* x axis value from 0 to 128 */ 0, /* y axis value from 0 to 64*/ 0);
-}
-
-void MotorControlExample(){
-	stop(); // Stops all motors
-	run('L' /* L - left motor, R - right motor */, 255/* Speed of motor from -255 to 255 */);
-}
-
-void EchoExample(){
-	int distance = echo('R');
-	Serial.println(distance);
-}
-
-void FloorStateReadExample(){
-	digitalRead(LEFT_SENSORPIN /* Three pins: LEFT, CENTER, RIGHT*/);
 }
